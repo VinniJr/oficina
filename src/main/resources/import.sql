@@ -1,2 +1,1 @@
-INSERT INTO tab_mecanico(nom_mecanico)
-VALUES ("Professor Pardal");
+INSERT INTO tab_mecanico(cod_matricula,nom_mecanico) VALUES (1,'Professor Pardal');
