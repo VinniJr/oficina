@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.oficina.oficina.model.Manutencao;
 import com.oficina.oficina.service.ManutencaoService;
+import com.oficina.oficina.service.MecanicoService;
 
 @Controller
 public class ManutencaoController {
@@ -19,11 +20,23 @@ public class ManutencaoController {
 	@Autowired
 	private ManutencaoService service;
 	
+	@Autowired
+	private MecanicoService mecanicoService;
+	
 	@GetMapping("/")
 	public ModelAndView findAll() {
 		
 		ModelAndView mv = new ModelAndView("/manutencao");
 		mv.addObject("listaManutencao", service.findAll());
+		
+		return mv;
+	}
+	
+	@GetMapping("/listaMecanico")
+	public ModelAndView findAllMecanico() {
+		
+		ModelAndView mv = new ModelAndView("/manutencaoAdd");
+		mv.addObject("listaMecanico", mecanicoService.findAll());
 		
 		return mv;
 	}
