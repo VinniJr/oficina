@@ -39,8 +39,7 @@
 						<div>
 							<tr>
 								<td>Selecione o mecânico:</td>
-								<td><select th:field="*{id}">
-										<option value="">--</option>
+								<td><select th:field="*{mecanico.id}">
 										<option th:each="mecanico : ${listaMecanico}"
 											th:value="${mecanico.id}"
 											th:utext="${mecanico.nomeMecanico}" />

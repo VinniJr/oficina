@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oficina.oficina.model.Manutencao;
+import com.oficina.oficina.model.Mecanico;
 import com.oficina.oficina.service.ManutencaoService;
 import com.oficina.oficina.service.MecanicoService;
 
@@ -29,22 +30,17 @@ public class ManutencaoController {
 		ModelAndView mv = new ModelAndView("/manutencao");
 		mv.addObject("listaManutencao", service.findAll());
 		
+		
 		return mv;
 	}
 	
-	@GetMapping("/listaMecanico")
-	public ModelAndView findAllMecanico() {
-		
-		ModelAndView mv = new ModelAndView("/manutencaoAdd");
-		mv.addObject("listaMecanico", mecanicoService.findAll());
-		
-		return mv;
-	}
+	
 	
 	@GetMapping("/add")
 	public ModelAndView add(Manutencao manutencao) {
 		
 		ModelAndView mv = new ModelAndView("/manutencaoAdd");
+		mv.addObject("listaMecanico", mecanicoService.findAll());
 		mv.addObject("manutencao", manutencao);
 		
 		return mv;
@@ -71,6 +67,10 @@ public class ManutencaoController {
 		if(result.hasErrors()) {
 			return add(manutencao);
 		}
+		
+		Mecanico mecanico = mecanicoService.findOne(manutencao.getMecanico().getId());
+		
+		manutencao.setMecanico(mecanico);
 		
 		service.save(manutencao);
 		

@@ -20,7 +20,7 @@
 						<tr>
 							<th>ID</th>
 							<th>Qtd Horas Trabalhadas</th>
-
+							<th>Mecânico</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -28,7 +28,7 @@
 						<tr th:each="item : ${listaManutencao}">
 							<td th:text="${item.id}"></td>
 							<td th:text="${item.qtdHorasTrabalhadas}"></td>
-							
+							<td th:text="${item.mecanico.nomeMecanico}"></td>
 							<td>
 								<div class="btn-group pull-right">
 							   		<a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${item.id})}" >Editar</a>
